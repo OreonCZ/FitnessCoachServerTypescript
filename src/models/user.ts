@@ -2,7 +2,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
     return sequelize.define(
         "user",
         {
-            id: {
+           id : {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4, //neco jako auto_increment
                 primaryKey: true,
