@@ -1,6 +1,6 @@
 module.exports = (sequelize: any, Sequelize: any) => {
   return sequelize.define(
-    "useraccountroles",
+    "exercisecategoryrecords",
     {
       createdAt: {
         type: Sequelize.DATE,

@@ -22,25 +22,41 @@ let db = {
   friendstable: require("./friends")(sequelize, Sequelize),
   achievements: require("./achievements")(sequelize, Sequelize),
   userAchievements: require("./userachievements")(sequelize, Sequelize),
-  table: require("./table")(sequelize, Sequelize),
+  tableStable: require("./table")(sequelize, Sequelize),
   meals: require("./meals")(sequelize, Sequelize),
   food: require("./food")(sequelize, Sequelize),
   mealsfood: require("./mealsfood")(sequelize, Sequelize),
-
+  exercises: require("./exercises")(sequelize, Sequelize),
+  exercisecategory: require("./exercisecategory")(sequelize, Sequelize),
+  exercisecategoryrecords: require("./exercisecategoryrecords")(
+    sequelize,
+    Sequelize
+  ),
 };
 
 db.users.belongsToMany(db.accountRoles, {
   through: db.userAccountRoles,
   as: "userRole",
 });
-
 db.users.belongsToMany(db.users, {
   through: db.friendstable,
-  as: "friends"
-})
+  as: "friends",
+});
 db.users.belongsToMany(db.achievements, {
   through: db.userAchievements,
-  as: "achievement"
-})
+  as: "achievement",
+});
+db.users.belongsTo(db.tableStable, {
+  onDelete: "cascade",
+  as: "tables",
+});
+db.meals.belongsToMany(db.food, {
+  through: db.mealsfood,
+  as: "meals",
+});
+db.exercises.belongsToMany(db.exercisecategory, {
+  through: db.exercisecategoryrecords,
+  as: "exercises",
+});
 
 export default db;

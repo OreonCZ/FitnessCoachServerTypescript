@@ -1,6 +1,6 @@
 module.exports = (sequelize: any, Sequelize: any) => {
   return sequelize.define(
-    "meals",
+    "exercises",
     {
       id: {
         type: Sequelize.UUID,
@@ -9,6 +9,15 @@ module.exports = (sequelize: any, Sequelize: any) => {
         allowNull: false,
       },
       name: {
+        type: Sequelize.STRING,
+      },
+      videoPath: {
+        type: Sequelize.STRING,
+      },
+      exerciseDesc: {
+        type: Sequelize.TEXT,
+      },
+      smallDesc: {
         type: Sequelize.STRING,
       },
     },

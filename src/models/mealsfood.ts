@@ -1,18 +1,16 @@
 module.exports = (sequelize: any, Sequelize: any) => {
-    return sequelize.define(
-        "mealsfood",
-        {
-            foodId: {
-                type: Sequelize.UUID,
-                primaryKey: true,
-            },
-            mealId: {
-                type: Sequelize.UUID,
-                primaryKey: true,
-            },
-        },
-        {
-            timestamps: true,
-        }
-    )
-}
+  return sequelize.define(
+    "mealsfood",
+    {
+      createdAt: {
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+      },
+    },
+    {
+      timestamps: true,
+    }
+  );
+};

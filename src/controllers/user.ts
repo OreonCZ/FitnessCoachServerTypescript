@@ -10,12 +10,12 @@ export const getAllUsers = async (req: Request, res: Response) => {
     const users = await User.findAll();
     if (!users || users.length == 0)
       return res.status(500).send({ msg: "Users not found" });
-    const ownerRole = await AccountRoles.findOne({where: {name: "owner"}});
-    const ownerAccounts = await ownerRole.getUser()
+    const ownerRole = await AccountRoles.findOne({ where: { name: "owner" } });
+    const ownerAccounts = await ownerRole.getUser();
     return res.status(200).send({
       msg: "Users found",
       payload: users,
-      ownerAccounts
+      ownerAccounts,
     });
   } catch (error) {
     console.log(error);
@@ -91,24 +91,3 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 };
-
-/*export const addFriend = async (req: Request, res: Response) => {
-  try {
-    const { user, friends } = req.body;
-    if (!user || !friends)
-      return res.status(400).send({ msg: "Missing details!" });
-    const friends = await User.findOne({ where: { friends: friends } });
-    if (user) return res.status(400).send({ msg: "User already exists!" });
-    const createdFriend = await User.create({
-      user: user,
-      friends: friends
-    });
-    if (!createdFriend)
-      return res.status(500).send({ msg: "Something went wrong!" });
-    return res.status(201).send({ msg: "Friend created", payload: createdFriend });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-};
-*/

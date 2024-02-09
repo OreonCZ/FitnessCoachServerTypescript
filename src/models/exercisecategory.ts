@@ -1,13 +1,7 @@
 module.exports = (sequelize: any, Sequelize: any) => {
   return sequelize.define(
-    "meals",
+    "exercisecategory",
     {
-      id: {
-        type: Sequelize.UUID,
-        primaryKey: true,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-      },
       name: {
         type: Sequelize.STRING,
       },
