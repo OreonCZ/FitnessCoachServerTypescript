@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import db from "../models/index";
 
-const Meal = db.meals;
+const Food = db.food;
 
-export const getAllMeals = async (req: Request, res: Response) => {
+export const getAllFood = async (req: Request, res: Response) => {
   try {
-    const meals = await Meal.findAll();
-    if (!meals || meals.length == 0)
-      return res.status(500).send({ msg: "Meals not found" });
+    const food = await Food.findAll();
+    if (!food || food.length == 0)
+      return res.status(500).send({ msg: "Food not found" });
     return res.status(200).send({
-      msg: "Meals found",
-      payload: meals,
+      msg: "Food found",
+      payload: food,
     });
   } catch (error) {
     console.log(error);
@@ -18,20 +18,20 @@ export const getAllMeals = async (req: Request, res: Response) => {
   }
 };
 
-export const getMealById = async (req: Request, res: Response) => {
+export const getFoodById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params; // const id = req.params.id
     if (!id) return res.status(400).send({ msg: "Missing details!" });
-    const meals = await Meal.findOne({ where: { id: id } });
-    if (!meals) return res.status(404).send({ msg: "Meal not found!" });
-    return res.status(200).send({ msg: "Meal found!", payload: meals });
+    const food = await Food.findOne({ where: { id: id } });
+    if (!food) return res.status(404).send({ msg: "Food not found!" });
+    return res.status(200).send({ msg: "Food found!", payload: food });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
 };
 
-export const createMeal = async (req: Request, res: Response) => {
+export const createFood = async (req: Request, res: Response) => {
   try {
     const {
       mealName,
@@ -57,9 +57,9 @@ export const createMeal = async (req: Request, res: Response) => {
       !image
     )
       return res.status(400).send({ msg: "Missing details!" });
-    const meals = await Meal.findOne({ where: { mealName: mealName } });
-    if (meals) return res.status(400).send({ msg: "Meal already exists!" });
-    const createdMeal = await Meal.create({
+    const food = await Food.findOne({ where: { mealName: mealName } });
+    if (food) return res.status(400).send({ msg: "Food already exists!" });
+    const createdFood = await Food.create({
       mealName: mealName,
       tableText: tableText,
       cal: cal,
@@ -71,41 +71,41 @@ export const createMeal = async (req: Request, res: Response) => {
       weight: weight,
       image: image,
     });
-    if (!createdMeal)
+    if (!createdFood)
       return res.status(500).send({ msg: "Something went wrong!" });
-    return res.status(201).send({ msg: "Meal created", payload: createdMeal });
+    return res.status(201).send({ msg: "Food created", payload: createdFood });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
 };
 
-export const updateMeal = async (req: Request, res: Response) => {
+export const updateFood = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const data = req.body;
     if (!id || !data) return res.status(400).send({ msg: "Missing details!" });
-    const meals = await Meal.findOne({ where: { id: id } });
-    if (!meals) return res.status(500).send({ msg: "Meal not found" });
+    const food = await Food.findOne({ where: { id: id } });
+    if (!food) return res.status(500).send({ msg: "Food not found" });
     for (const ops of data) {
-      meals[ops.propName] = ops.value;
+      food[ops.propName] = ops.value;
     }
-    const action = await meals.save();
+    const action = await food.save();
     if (!action) return res.status(500).send({ msg: "Something went wrong" });
-    return res.status(200).send({ msg: "Meal updated!", payload: meals });
+    return res.status(200).send({ msg: "Food updated!", payload: food });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
 };
 
-export const deleteMeal = async (req: Request, res: Response) => {
+export const deleteFood = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     if (!id) return res.status(400).send({ msg: "Missing details!" });
-    const meals = await Meal.destroy({ where: { id: id } });
-    if (!meals) return res.status(400).send({ msg: "Meal not found!" });
-    return res.status(200).send({ msg: "Meal deleted!" });
+    const food = await Food.destroy({ where: { id: id } });
+    if (!food) return res.status(400).send({ msg: "Food not found!" });
+    return res.status(200).send({ msg: "Food deleted!" });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);

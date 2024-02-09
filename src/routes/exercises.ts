@@ -4,15 +4,15 @@ const router = express.Router();
 
 import * as exercisesController from "../controllers/exercises";
 
-router.get("/exercises", exercisesController.getAllExercises);
+router.get("/", exercisesController.getAllExercises);
 
-router.get("/exercises/:id", exercisesController.getExerciseById);
+router.get("/:id", exercisesController.getExerciseById);
 
-router.post("/exercises", exercisesController.createExercise);
+router.post("/", exercisesController.createExercise);
 
-router.put("/exercises/:id", exercisesController.updateExercise);
+router.put("/:id", exercisesController.updateExercise);
 
-router.delete("/exercises/:id", exercisesController.deleteExercise);
+router.delete("/:id", exercisesController.deleteExercise);
 
 //router.post("/", userController.addFriend);
 

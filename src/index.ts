@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 db.sequelize.sync({ force: true, alter: true });
 
 app.use(`/api/v${process.env.API_VER}/user`, require("./routes/user"));
-app.use(`/api/v${process.env.API_VER}/meals`, require("./routes/meals"));
+app.use(`/api/v${process.env.API_VER}/food`, require("./routes/food"));
 app.use(`/api/v${process.env.API_VER}/exercises`, require("./routes/exercises")
 );
 

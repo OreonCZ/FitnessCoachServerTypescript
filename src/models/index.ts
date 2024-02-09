@@ -50,9 +50,9 @@ db.users.belongsTo(db.tableStable, {
   onDelete: "cascade",
   as: "tables",
 });
-db.meals.belongsToMany(db.food, {
+db.food.belongsToMany(db.meals, {
   through: db.mealsfood,
-  as: "meals",
+  as: "food",
 });
 db.exercises.belongsToMany(db.exercisecategory, {
   through: db.exercisecategoryrecords,

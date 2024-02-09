@@ -2,6 +2,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
   return sequelize.define(
     "food",
     {
+      mealName: {
+        type: Sequelize.STRING,
+      },
       tableText: {
         type: Sequelize.STRING,
       },
@@ -27,7 +30,8 @@ module.exports = (sequelize: any, Sequelize: any) => {
         type: Sequelize.FLOAT,
       },
       image: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
+        allowNull: true,
       },
     },
     {
