@@ -28,10 +28,9 @@ let db = {
   mealsfood: require("./mealsfood")(sequelize, Sequelize),
   exercises: require("./exercises")(sequelize, Sequelize),
   exercisecategory: require("./exercisecategory")(sequelize, Sequelize),
-  exercisecategoryrecords: require("./exercisecategoryrecords")(
-    sequelize,
-    Sequelize
-  ),
+  exercisecategoryrecords: require("./exercisecategoryrecords")(sequelize, Sequelize),
+  programs: require("./programs")(sequelize, Sequelize),
+  programExercises: require("./programExercises")(sequelize, Sequelize),
 };
 
 db.users.belongsToMany(db.accountRoles, {
@@ -57,6 +56,10 @@ db.food.belongsToMany(db.meals, {
 db.exercises.belongsToMany(db.exercisecategory, {
   through: db.exercisecategoryrecords,
   as: "exercises",
+});
+db.exercises.belongsToMany(db.programs, {
+  through: db.programExercises,
+  as: "program",
 });
 
 export default db;
