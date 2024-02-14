@@ -15,9 +15,11 @@ module.exports = (sequelize: any, Sequelize: any) => {
         type: Sequelize.BOOLEAN,
         defaultValue: 0,
       },
-      image: {
+     /* image: {
         type: Sequelize.BLOB,
+        allowNull: true,
       },
+      */
     },
     {
       timestamps: true,
