@@ -8,11 +8,38 @@ module.exports = (sequelize: any, Sequelize: any) => {
         primaryKey: true,
         allowNull: false,
       },
-      email: {
+      firstName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      username: {
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dateOfBirth: {
+        type: Sequelize.DATE,
+      },
+      weight: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+      height: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+      banner: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      profilePicture: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      stats: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
