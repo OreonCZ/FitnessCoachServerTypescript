@@ -1,17 +1,18 @@
 import express from "express";
+import { verify, auth } from "../services/auth";
 
 const router = express.Router();
 
 import * as mealsController from "../controllers/meals";
 
-router.get("/", mealsController.getAllUsers);
+router.get("/", verify, auth(["user", "admin", "verified"]), mealsController.getAllUsers);
 
-router.get("/:id", mealsController.getUserById);
+router.get("/:id", verify, auth(["user", "admin", "verified"]), mealsController.getUserById);
 
-router.post("/", mealsController.createUser);
+router.post("/", verify, auth(["user", "admin", "verified"]), mealsController.createUser);
 
-router.put("/:id", mealsController.updateUser);
+router.put("/:id", verify, auth(["user", "admin", "verified"]), mealsController.updateUser);
 
-router.delete("/:id", mealsController.deleteUser);
+router.delete("/:id", verify, auth(["user", "admin", "verified"]), mealsController.deleteUser);
 
 module.exports = router;

@@ -8,11 +8,11 @@ module.exports = (sequelize: any, Sequelize: any) => {
         primaryKey: true,
         allowNull: false,
       },
-      firstName: {
+      firstname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lastName: {
+      lastname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
